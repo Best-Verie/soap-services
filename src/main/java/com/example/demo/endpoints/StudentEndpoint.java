@@ -17,8 +17,6 @@ import java.util.Optional;
 public class StudentEndpoint {
     private final StudentRepository studentRepository;
 
-
-
     @Autowired
     public StudentEndpoint(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -28,17 +26,11 @@ public class StudentEndpoint {
     @ResponsePayload
     public NewStudentDTOResponse create(@RequestPayload NewStudentDTORequest dto) {
         jaxb.classes.Student __student = dto.getStudent();
-
         Student _student = new Student(__student.getFirstName(), __student.getFirstName(), __student.getGender());
-
         Student student = studentRepository.save(_student);
-
         NewStudentDTOResponse studentDTO = new NewStudentDTOResponse();
-
         __student.setId(student.getId());
-
         studentDTO.setStudent(__student);
-
         return studentDTO;
     }
 
