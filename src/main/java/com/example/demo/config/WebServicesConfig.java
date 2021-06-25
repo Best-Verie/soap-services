@@ -32,18 +32,32 @@ public class WebServicesConfig {
     // /ws/anselme/students.wsdl
     // course-details.xsd
     @Bean(name = "students")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentSchema) {
+    public DefaultWsdl11Definition studentWsdl(XsdSchema studentSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("StudentPort");
-        definition.setTargetNamespace("https://rca.ac.rw/verie/soap-app");
+        definition.setTargetNamespace("https://rca.ac.rw/verie/soap-app/student");
         definition.setLocationUri("/ws/verie/");
         definition.setSchema(studentSchema);
         return definition;
     }
+    @Bean(name = "courses")
+    public DefaultWsdl11Definition courseWsdl(XsdSchema courseSchema) {
+        DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
+        definition.setPortTypeName("CoursePort");
+        definition.setTargetNamespace("https://rca.ac.rw/verie/soap-app/courses");
+        definition.setLocationUri("/ws/verie/");
+        definition.setSchema(courseSchema);
+        return definition;
+    }
 
     @Bean
-    public XsdSchema coursesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("app.xsd"));
+    public XsdSchema studentSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("student.xsd"));
+    }
+
+    @Bean
+    public  XsdSchema courseSchema(){
+        return new SimpleXsdSchema(new ClassPathResource("courses.xsd"));
     }
 }
 

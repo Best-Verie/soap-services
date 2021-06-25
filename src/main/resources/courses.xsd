@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://rca.ac.rw/verie/soap-app/courses"
+        xmlns:tns="https://rca.ac.rw/verie/soap-app/courses"
+        elementFormDefault="qualified">
+
+
+    <xs:complexType name="Course">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- Requests -->
+
+    <!-- New course -->
+    <xs:element name="NewCourseRequestDTO">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="NewCourseResponseDTO">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Get all students -->
+    <xs:element name="GetAllCoursesRequest">
+        <xs:complexType>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllCoursesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

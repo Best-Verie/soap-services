@@ -1,8 +1,9 @@
 package com.example.demo.endpoints;
 
 import com.example.demo.repositories.StudentRepository;
-import jaxb.classes.*;
+import https.rca_ac_rw.verie.soap_app.*;
 
+import https.rca_ac_rw.verie.soap_app.student.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -22,10 +23,10 @@ public class StudentEndpoint {
         this.studentRepository = studentRepository;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app", localPart = "NewStudentDTORequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app/student", localPart = "NewStudentDTORequest")
     @ResponsePayload
     public NewStudentDTOResponse create(@RequestPayload NewStudentDTORequest dto) {
-        jaxb.classes.Student __student = dto.getStudent();
+        https.rca_ac_rw.verie.soap_app.student.Student __student = dto.getStudent();
         Student _student = new Student(__student.getFirstName(), __student.getFirstName(), __student.getGender());
         Student student = studentRepository.save(_student);
         NewStudentDTOResponse studentDTO = new NewStudentDTOResponse();
@@ -34,7 +35,7 @@ public class StudentEndpoint {
         return studentDTO;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app", localPart = "GetAllStudentsRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app/student", localPart = "GetAllStudentsRequest")
     @ResponsePayload
     public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request){
 
@@ -43,7 +44,7 @@ public class StudentEndpoint {
         GetAllStudentsResponse response = new GetAllStudentsResponse();
 
         for (Student student: students){
-            jaxb.classes.Student _student = new jaxb.classes.Student();
+            https.rca_ac_rw.verie.soap_app.student.Student _student = new https.rca_ac_rw.verie.soap_app.student.Student();
             _student.setId(student.getId());
             _student.setFirstName(student.getFirstName());
             _student.setLastName(student.getLastName());
@@ -54,7 +55,7 @@ public class StudentEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app", localPart = "GetStudentDetailsRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app/student", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
     public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request){
         Optional<Student> _student = studentRepository.findById(request.getId());
@@ -66,7 +67,7 @@ public class StudentEndpoint {
 
         GetStudentDetailsResponse response = new GetStudentDetailsResponse();
 
-        jaxb.classes.Student __student = new jaxb.classes.Student();
+        https.rca_ac_rw.verie.soap_app.student.Student __student = new https.rca_ac_rw.verie.soap_app.student.Student();
         __student.setId(student.getId());
         __student.setFirstName(student.getFirstName());
         __student.setLastName(student.getLastName());
@@ -78,7 +79,7 @@ public class StudentEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteStudentRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app/student", localPart = "DeleteStudentRequest")
     @ResponsePayload
     public DeleteStudentResponse delete(@RequestPayload DeleteStudentRequest request){
         studentRepository.deleteById(request.getId());
@@ -87,10 +88,10 @@ public class StudentEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateStudentRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/verie/soap-app/student", localPart = "UpdateStudentRequest")
     @ResponsePayload
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request){
-        jaxb.classes.Student __student = request.getStudent();
+        https.rca_ac_rw.verie.soap_app.student.Student __student = request.getStudent();
 
         Student _student = new Student(__student.getFirstName(), __student.getFirstName(), __student.getGender());
         _student.setId(__student.getId());

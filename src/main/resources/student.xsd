@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="https://rca.ac.rw/verie/soap-app"
-        xmlns:tns="https://rca.ac.rw/verie/soap-app"
+        targetNamespace="https://rca.ac.rw/verie/soap-app/student"
+        xmlns:tns="https://rca.ac.rw/verie/soap-app/student"
         elementFormDefault="qualified">
 <!--        -->
 <!--        All the requests in the CRUD-->
@@ -106,6 +106,9 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+
+
 </xs:schema>
 
         <!--
